@@ -1,7 +1,7 @@
 from dataclasses import dataclass, field
 from typing import List
-from .experience_entity import ExperienceEntity
-from .contact_entity import ContactEntity
+from experience_entity import ExperienceEntity
+from contact_entity import ContactEntity
 
 @dataclass
 class PersonEntity:
