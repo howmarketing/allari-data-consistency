@@ -1,0 +1,9 @@
+- [ ] Add Peewee dependencie;
+- [ ] Create the database connection with sqlite as dev database;
+- [ ] Create the Models entity's;
+- [ ] Implement the data seed to populate the database with the data records provided as json;
+   - [ ] Implement the relationship for seed extractor for:
+      - [ ] Persons;
+      - [ ] Experiences;
+      - [ ] Contacts;
+- [ ] ...
