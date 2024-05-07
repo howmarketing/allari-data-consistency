@@ -1,0 +1,341 @@
+[
+    {
+        "id": 0,
+        "first": "Non",
+        "last": "",
+        "phone": "00000000000",
+        "experience": []
+    },
+    {
+        "id": 1,
+        "first": "John",
+        "last": "Doe",
+        "phone": "(123) 456-7890",
+        "experience": [
+            {
+                "company": "OrangeCart",
+                "title": "Director of Marketing",
+                "start": "2017-01-01",
+                "end": null
+            },
+            {
+                "company": "GreenTech",
+                "title": "Marketing Manager",
+                "start": "2015-06-01",
+                "end": "2016-12-31"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "first": "Jane",
+        "last": "Smith",
+        "phone": "(987) 654-3210",
+        "experience": [
+            {
+                "company": "BlueBox",
+                "title": "Software Engineer",
+                "start": "2018-06-01",
+                "end": null
+            },
+            {
+                "company": "RedHat",
+                "title": "Junior Developer",
+                "start": "2016-01-01",
+                "end": "2017-05-31"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "first": "Bob",
+        "last": "Johnson",
+        "phone": "(555) 123-4567",
+        "experience": [
+            {
+                "company": "OrangeCart",
+                "title": "Sales Manager",
+                "start": "2019-03-01",
+                "end": null
+            },
+            {
+                "company": "YellowSubmarine",
+                "title": "Account Manager",
+                "start": "2017-07-01",
+                "end": "2018-05-31"
+            }   
+        ]
+    },
+    {
+    
+        "id": 4,
+        "first": "Alice",
+        "last": "Williams",
+        "phone": "(777) 888-9999",
+        "experience": [
+            {
+            
+                "company": "PurplePine",
+                "title": "Data Scientist",
+                "start": "2020-01-01",
+                "end": null
+            },
+            {
+
+                
+                "company": "GreenTech",
+                "title": "Research Assistant",
+                "start": "2018-06-01",
+                "end": "2019-12-31"
+            }
+            
+        ]
+    },
+    {
+    
+        "id": 5,
+        "first": "Mike",
+        "last": "Davis",
+        "phone": "(333) 444-5555",
+        "experience": [
+            {
+            
+                "company": "BlueBox",
+                "title": "DevOps Engineer",
+                "start": "2019-09-01",
+                "end": null
+            },
+            {
+
+                
+                "company": "RedHat",
+                "title": "Senior Developer",
+                "start": "2017-06-01",
+                "end": "2019-08-31"
+            }
+            
+        ]
+    },
+    {
+    
+        "id": 6,
+        "first": "Emily",
+        "last": "Taylor",
+        "phone": "(666) 777-8888",
+        "experience": [
+            {
+            
+                "company": "YellowSubmarine",
+                "title": "Marketing Coordinator",
+                "start": "2020-06-01",
+                "end": null
+            },
+            {
+
+                
+                "company": "PurplePine",
+                "title": "Social Media Manager",
+                "start": "2018-01-01",
+                "end": "2020-05-31"
+            }
+            
+        ]
+    },
+    {
+    
+        "id": 7,
+        "first": "Sarah",
+        "last": "Lee",
+        "phone": "(999) 111-2222",
+        "experience": [
+            {
+                "company": "GreenTech",
+                "title": "Environmental Consultant",
+                "start": "2019-01-01",
+                "end": null
+            },
+            {
+                "company": "BlueBox",
+                "title": "Sustainability Specialist",
+                "start": "2017-01-01",
+                "end": "2018-12-31"
+            }
+            
+        ]
+    },
+    {
+    
+        "id": 8,
+        "first": "David",
+        "last": "Hall",
+        "phone": "(222) 333-4444",
+        "experience": [
+            {
+                "company": "RedHat",
+                "title": "Data Scientist",
+                "start": "2019-01-01",
+                "end": null
+            },
+            {
+                "company": "YellowSubmarine",
+                "title": "Research Assistant",
+                "start": "2017-01-01",
+                "end": "2018-12-31"
+            },
+            {
+                "company": "PurplePine",
+                "title": "Research Assistant",
+                "start": "2017-01-01",
+                "end": "2018-12-31"
+            }
+        ]
+    },
+    {
+        "id": 9,
+        "first": "Linda",
+        "last": "Brown",
+        "phone": "(100) 200-3000",
+        "experience": [
+            {
+                "company": "TechGlobal",
+                "title": "UI/UX Designer",
+                "start": "2021-04-01",
+                "end": null
+            },
+            {
+                "company": "DesignPro",
+                "title": "Graphic Designer",
+                "start": "2018-05-01",
+                "end": "2021-03-31"
+            }
+        ]
+    },
+    {
+        "id": 10,
+        "first": "Ethan",
+        "last": "White",
+        "phone": "(200) 300-4000",
+        "experience": [
+            {
+                "company": "FastLogistics",
+                "title": "Logistics Coordinator",
+                "start": "2020-02-01",
+                "end": null
+            },
+            {
+                "company": "ShippingSolutions",
+                "title": "Operations Analyst",
+                "start": "2017-08-01",
+                "end": "2020-01-31"
+            }
+        ]
+    },
+    {
+        "id": 11,
+        "first": "Chloe",
+        "last": "Green",
+        "phone": "(300) 400-5000",
+        "experience": [
+            {
+                "company": "HealthWell",
+                "title": "Registered Nurse",
+                "start": "2021-05-01",
+                "end": null
+            },
+            {
+                "company": "MediCareClinic",
+                "title": "Nurse Practitioner",
+                "start": "2018-06-01",
+                "end": "2021-04-30"
+            }
+        ]
+    },
+    {
+        "id": 12,
+        "first": "Matthew",
+        "last": "Adams",
+        "phone": "(400) 500-6000",
+        "experience": [
+            {
+                "company": "EduTechSolutions",
+                "title": "Software Developer",
+                "start": "2019-09-01",
+                "end": null
+            },
+            {
+                "company": "LearnOnline",
+                "title": "Junior Web Developer",
+                "start": "2017-07-01",
+                "end": "2019-08-31"
+            }
+        ]
+    },
+    {
+        "id": 13,
+        "first": "Olivia",
+        "last": "Jones",
+        "phone": "(500) 600-7000",
+        "experience": [
+            {
+                "company": "DigitalMedia",
+                "title": "Content Writer",
+                "start": "2021-06-01",
+                "end": null
+            },
+            {
+                "company": "CreativeContent",
+                "title": "Copywriter",
+                "start": "2019-04-01",
+                "end": "2021-05-31"
+            }
+        ]
+    },
+    {
+        "id": 14,
+        "first": "Noah",
+        "last": "Miller",
+        "phone": "(600) 700-8000",
+        "experience": [
+            {
+                "company": "AutoInnovations",
+                "title": "Mechanical Engineer",
+                "start": "2020-03-01",
+                "end": null
+            },
+            {
+                "company": "DesignCars",
+                "title": "Design Engineer",
+                "start": "2016-09-01",
+                "end": "2020-02-29"
+            }
+        ]
+    },
+    {
+        "id": 15,
+        "first": "Dead",
+        "last": "John",
+        "phone": "(415) 123-4567",
+        "experience": [
+            {
+                "company": "How Marketing",
+                "title": "CEO",
+                "start": "2017-01-01",
+                "end": null
+            }
+        ]
+    },
+    {
+        "id": 15,
+        "first": "John Mom",
+        "last": "John",
+        "phone": "+19173454768",
+        "experience": [
+            {
+                "company": "How Marketing",
+                "title": "CEO",
+                "start": "2017-01-01",
+                "end": null
+            }
+        ]
+    }
+]
