@@ -27,19 +27,8 @@
         ]
     },
     {
-        "id": 2,
-        "owner_id": 1,
-        "contact_nickname": "Friend",
-        "phone": [
-            {
-                "number": "+14151234567",
-                "type": "cell"
-            }
-        ]
-    },
-    {
         "id": 3,
-        "owner_id": 3,
+        "owner_id": 2,
         "contact_nickname": "Colleague",
         "phone": [
             {
@@ -50,7 +39,7 @@
     },
     {
         "id": 4,
-        "owner_id": 4,
+        "owner_id": 3,
         "contact_nickname": "Sibling",
         "phone": [
             {
@@ -61,7 +50,7 @@
     },
     {
         "id": 5,
-        "owner_id": 5,
+        "owner_id": 4,
         "contact_nickname": "Best Friend",
         "phone": [
             {
@@ -72,7 +61,7 @@
     },
     {
         "id": 6,
-        "owner_id": 6,
+        "owner_id": 5,
         "contact_nickname": "Uncle",
         "phone": [
             {
@@ -83,7 +72,7 @@
     },
     {
         "id": 7,
-        "owner_id": 7,
+        "owner_id": 6,
         "contact_nickname": "Aunt",
         "phone": [
             {
@@ -94,7 +83,7 @@
     },
     {
         "id": 8,
-        "owner_id": 8,
+        "owner_id": 7,
         "contact_nickname": "Cousin",
         "phone": [
             {
@@ -105,7 +94,7 @@
     },
     {
         "id": 9,
-        "owner_id": 9,
+        "owner_id": 8,
         "contact_nickname": "Grandparent",
         "phone": [
             {
@@ -116,7 +105,7 @@
     },
     {
         "id": 10,
-        "owner_id": 10,
+        "owner_id": 9,
         "contact_nickname": "Child",
         "phone": [
             {
@@ -127,7 +116,7 @@
     },
     {
         "id": 11,
-        "owner_id": 11,
+        "owner_id": 10,
         "contact_nickname": "Friend from School",
         "phone": [
             {
@@ -138,7 +127,7 @@
     },
     {
         "id": 12,
-        "owner_id": 12,
+        "owner_id": 11,
         "contact_nickname": "Neighbor",
         "phone": [
             {
@@ -149,7 +138,7 @@
     },
     {
         "id": 13,
-        "owner_id": 13,
+        "owner_id": 12,
         "contact_nickname": "Tennis Partner",
         "phone": [
             {
@@ -160,7 +149,7 @@
     },
     {
         "id": 14,
-        "owner_id": 14,
+        "owner_id": 13,
         "contact_nickname": "Book Club Member",
         "phone": [
             {
@@ -177,6 +166,28 @@
             {
                 "number": "(123) 456-7890",
                 "type": "work"
+            }
+        ]
+    },
+    {
+        "id": 16,
+        "owner_id": 16,
+        "contact_nickname": "Friend",
+        "phone": [
+            {
+                "number": "+14151234567",
+                "type": "cell"
+            }
+        ]
+    },
+    {
+        "id": 17,
+        "owner_id": 1,
+        "contact_nickname": "Samanta",
+        "phone": [
+            {
+                "number": "+55 (62) 9 9322-3016",
+                "type": "cell"
             }
         ]
     }

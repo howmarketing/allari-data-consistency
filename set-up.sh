@@ -3,11 +3,11 @@
 # Initialize conda in your current shell
 eval "$(conda shell.bash hook)"
 
-conda create --name APP-V3-LAB-V1 python=3.9.6
-conda activate APP-V3-LAB-V1
+conda create --name ORM_TEST python=3.9.6
+conda activate ORM_TEST
 conda install --file requirements.txt
 
-conda env config vars set PYTHONPATH="/Users/gabrielariza/Documents/allari/application/V3"
+conda env config vars set PYTHONPATH="/Users/gabrielariza/Documents/allari/allari-data-consistency"
 
 
 conda list
