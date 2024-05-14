@@ -140,10 +140,12 @@ class FindContactsByPersonId:
     
     __query = ""
     __query_result = []
-    person_id = 0
+    __person_id = 0
     
     def __init__(self, person_id):
-        self.person_id = person_id
+        self.__person_id              = person_id
+        self.__query                =       ""
+        self.__query_result         =       []
     
     def set_query(self, show_only_contacts_matching_person = False):
         self.__query = ""
@@ -174,8 +176,8 @@ class FindContactsByPersonId:
         self.__query +=      "person.id, phone.contact_id ASC"
     
     def execute_query(self):
-        
-        cursor = db.execute_sql('{}'.format(self.__query), (self.person_id, self.person_id))
+        self.__query_result = []
+        cursor = db.execute_sql('{}'.format(self.__query), (self.__person_id, self.__person_id))
         for value in cursor:
             id, contact_owner_name, nickname, type, number, contact_id, id, contact_person_name = value
             data = {
@@ -301,8 +303,6 @@ class FindExperiencesWithPermanenceDays:
             return []
         binds = self.get_query_binds()
         query = '{}'.format(self.__query)
-        print('query: ', query)
-        print('binds: ', binds)
 
         cursor = db.execute_sql(query, binds)
         
@@ -335,7 +335,117 @@ class FindExperiencesWithPermanenceDays:
         print('query_results'        ,  ': ', ' '*l[4]      ,    self.__query_result)
                 
         return list((self.company_name, self.min_permanence_days, self.person_id, self.start_date, self.end_date, self.__query_result))
-   
+
+
+
+class RelatedExperiencesFromExperience():
+    
+    _related_from_experiences:list[Experience] = []
+    _person_id = 0
+    _person:Person = None
+    
+    def __init__(self, person_id = 0):
+        self._related_from_experiences = []
+        self._person_id = person_id        
+
+    def set_person_by_id(self, person_id=None):
+        if person_id is None:
+            person_id = self._person_id
+        if self._person is not None and self._person.id == person_id:
+            return self
+        
+        self._person = Person.get_by_id(self._person_id)
+        return self
+    
+    def get_person_by_id(self, person_id=None) -> Person:
+        if person_id is None:
+            person_id = self._person_id
+        return self.set_person_by_id(person_id=person_id)._person
+    
+    def get_person_experiences_by_person_id(self, person_id=None) -> list[Experience]:
+        if person_id is None:
+            person_id = self._person_id
+        person = self.get_person_by_id(person_id=person_id)
+        return person.experiences
+    
+    
+    def set_related_experiences_from_person_experiences(self, person_id=None, min_permanence_days=90) -> list[Experience]:
+        if person_id is None:
+            person_id = self._person_id
+
+        self._related_from_experiences = []
+        
+        person_exp = self.get_person_experiences_by_person_id(person_id)
+        
+        for exp in person_exp:
+            find_experiences_with_permanence_days = FindExperiencesWithPermanenceDays(
+                company_name=exp.company,
+                start_date=exp.start_date,
+                end_date=exp.end_date,
+                min_permanence_days=min_permanence_days,
+                person_id=exp.person.id
+            )
+            related_by_experience = find_experiences_with_permanence_days.get_query_result()
+            for related in related_by_experience:
+                self._related_from_experiences.append(Experience(
+                    person=related['person_id'],
+                    company=related['company'],
+                    title=related['title'],
+                    start_date=related['start_date'],
+                    end_date=related['end_date']
+                ))
+        
+        return self
+            
+    def get_related_experiences_from_person_experiences(self, person_id=None, min_permanence_days=90):
+        self.set_related_experiences_from_person_experiences(person_id=person_id, min_permanence_days=min_permanence_days)
+        return self._related_from_experiences
+
+
+class PersonRepository(RelatedExperiencesFromExperience):
+    
+    _person:Person = None
+    _experiences:list[Experience] = []
+    
+    def __init__(self, person_id=None):
+        super().__init__(person_id=person_id)
+    
+    
+    def get_person(self, person_id=None):
+        return super().get_person_by_id(person_id=person_id)
+    
+    def get_person_experiences(self, person_id=None):
+        return super().get_person_experiences_by_person_id(person_id=person_id)
+    
+    def get_person_related_people_by_experiences(self, person_id=None, min_permanence_days=90):
+        return super().get_related_experiences_from_person_experiences(person_id=person_id, min_permanence_days=min_permanence_days)
+    
+    def get_person_related_people_by_contacts(self, person_id=None, only_contacts_with_related_person=True):
+        person = self.get_person(person_id=person_id)
+        return FindContactsByPersonId(person.id).get_query_result(only_contacts_with_related_person)
+    
+    def get_person_relationships(self, person_id=None, min_permanence_days=90, only_contacts_with_related_person=True):
+        person_relationship = {
+            'by_experiences': [],
+            'by_contacts': [],
+        }
+        # print('get_person_related_people_by_experiences')
+        person_experiences = self.get_person_related_people_by_experiences(person_id=person_id, min_permanence_days=min_permanence_days)
+        for related_from_experience in person_experiences:
+            related_from_experience.__data__['person'] = related_from_experience.person.__data__
+            person_relationship['by_experiences'].append(related_from_experience.__data__)
+            # print2(related_from_experience.__data__)
+        
+        # print('get_person_related_people_by_contacts')
+        person_contacts = self.get_person_related_people_by_contacts(person_id=person_id, only_contacts_with_related_person=only_contacts_with_related_person)
+        for related_from_contact in person_contacts:
+            person_relationship['by_contacts'].append(related_from_contact)
+            # print2(related_from_contact)
+        
+        person = self.get_person(person_id=person_id)
+        person.__data__['relationships'] = person_relationship
+        return person.__data__;
+
 def print2(data):
     # Print the param __name__ and __value__
     print(getattr(data, '__name__', '') or '')
@@ -350,82 +460,21 @@ PERSON_ID = 1
 
 
 def migrate_database():
-    migration = Migration()
+    Migration()
+    
+    person_relation_ships = PersonRepository(person_id=PERSON_ID).get_person_relationships(person_id=PERSON_ID)
+    
+    print2(person_relation_ships)
+    print('-'*64)
+    print(person_relation_ships['id'], ' | ', person_relation_ships['first_name'], person_relation_ships['last_name'])
+    
+    for relationships_by_experience in person_relation_ships['relationships']['by_experiences']:
+        print(relationships_by_experience['person']['id'], ' | ', relationships_by_experience['person']['first_name'], relationships_by_experience['person']['last_name'])
+    
+    for relationships_by_contacts in person_relation_ships['relationships']['by_contacts']:
+        print(relationships_by_contacts['id'], ' | ', relationships_by_contacts['contact_person_name'])
     
     
-    # person_contacts = FindContactsByPersonId(PERSON_ID).get_query_result(True)
-    person_contacts = FindContactsByPersonId(PERSON_ID).get_query_result(False)
-    print2(person_contacts)
-    
-    person = Person.get_by_id(PERSON_ID)
-    person_exp:list[Experience] = person.experiences;
-    
-    for exp in person_exp:
-        print('-'*64)
-        print(exp.company)
-        print(exp.title)
-        print(exp.start_date)
-        print(exp.end_date)
-        print('Related by company: ')
-        find_experiences_with_permanence_days = FindExperiencesWithPermanenceDays(
-            company_name=exp.company,
-            start_date=exp.start_date,
-            end_date=exp.end_date,
-            person_id=exp.person.id
-        )
-        related_by_experience = find_experiences_with_permanence_days.get_query_result()
-        print(find_experiences_with_permanence_days.__repr__())
-        print2(related_by_experience)
-    
-    
-    
-    return
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    # find_contacts_by_person_id = FindContactsByPersonId(PERSON_ID)
-    # person_contacts = find_contacts_by_person_id.get_query_result()
-    find_experiences = FindExperiences()
-    person_experiences:list[Experience] = find_experiences.get_experiences_by_person_id(PERSON_ID)
-    persons_data = migration.get_person_data()
-    contacts_data = migration.get_person_data()
-    
-    
-    print('Contacts:')
-    print(json.dumps(person_contacts, indent=2))
- 
-    others_experiences: list(Experience) = []
-    
-    print('Experiences:')
-    for exp in person_experiences:
-        print('Experience:')
-        exp.__data__.update({'start_date': str(exp.start_date)})
-        exp.__data__.update({'end_date': str(exp.start_date)})
-        print(json.dumps([exp.__data__], indent=2))
-        
-        others_experience:list[Experience] = find_experiences.get_experiences_where_company_name_like_not_person_id_dates_between_old(
-            company_name=exp.company,
-            person_id=PERSON_ID,
-            start_date=exp.start_date,
-            end_date=exp.end_date,
-        )
-        print('Others experiences matching:')
-        for other_experience in others_experience:
-            others_experiences.append(other_experience.__data__)
-            print(other_experience.__data__)
-    
-    print('ALL others_experiences')
-    print(others_experiences)
-    
-    
-            
     
         
         
