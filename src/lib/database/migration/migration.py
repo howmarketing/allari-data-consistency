@@ -268,7 +268,7 @@ class FindExperiencesWithPermanenceDays:
         self.__query +=    "FROM  "
         self.__query +=        "experience as e "
         self.__query +=    "WHERE "
-        self.__query +=        "person_id >= ?"
+        self.__query +=        "person_id <> ?"
         self.__query +=    "AND "
         self.__query +=        "permanence_days >= ?"
         self.__query +=     "ORDER BY "
@@ -318,7 +318,7 @@ def migrate_database():
     
     
     # experiences_with_permanence_days = FindExperiencesWithPermanenceDays(person_id=PERSON_ID).get_query_result()
-    experiences_with_permanence_days = FindExperiencesWithPermanenceDays(0, 2000).get_query_result()
+    experiences_with_permanence_days = FindExperiencesWithPermanenceDays(1, 2000).get_query_result()
     print2(experiences_with_permanence_days)
     
     
