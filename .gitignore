@@ -11,7 +11,10 @@ lerna-debug.log*
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
 # Python cache
-# __pycache__
+__pycache__
+
+# DEV Databases
+src/lib/database/migration/data/db/*.db
 
 # Runtime data
 pids

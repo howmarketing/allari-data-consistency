@@ -1,18 +1,18 @@
-# [V2] FEATURE | PEEWEE ORM
+# [V3] FEATURE | CLEAR CODE BASE
 
 
 ## TODO
 
-- [x] 1. Add Peewee dependencie;
-- [x] 2. Create the database connection with sqlite as dev database;
-- [x] 3. Create the Models entity's;
-- [x] 4. Implement the data seed to populate the database with the data records provided 
-as json;
-   - [x] 4.1. Implement the relationship for seed extractor for:
-      - [x] 4.1.1. Persons;
-      - [x] 4.1.2. Experiences;
-      - [x] 4.1.3. Contacts;
-- [ ] 5. Unit tests.
+- [x] 1. Remove the `__pycache__` paths;
+- [x] 2. Commit the project without the `__pycache__` paths;
+   - [x] 2.1 Push without the `__pycache__` paths.
+- [x] 3. Add on the .gitignore file the `__pycache__` paths to not to be included anymore;
+   - [x] 3.1. push it.
+- [x] 4. Remove the databases from `src/lib/database/migration/data/db/` by the match names `allari-data-consistency_*_.db`;
+- [x] 5. Commit the project without the databases `src/lib/database/migration/data/db/allari-data-consistency_*_.db`;
+- [x] 6. Add on the `.gitignore` file databases matching `src/lib/database/migration/data/db/allari-data-consistency_*_.db`;
+   - [x] 6.1. Push it.
+- [x] 7. Test the application and the changes log on `git status` to make sure it is being successfully ignored.
 
 ### DOING
 
