@@ -1,8 +1,68 @@
-# allari-data-consistency
+# PROJECT ALLARI DATA CONSISTENCY
 
-In this four-part exercise, you will write Python code to find connections between people based on given rules.
+## USAGE
 
-# Project Overview
+To run the project, you only need to execute the following command:
+
+```bash
+python main.py <person_id>`
+```
+
+> Replace `<person_id>` with the ID of the person whose relationships you want to find. For example, `python main.py 1` will find the relationships for the person with ID 1. You can change the ID to any other value, such as `2`, `3`, etc.
+>
+
+**Example:**
+
+```bash
+python main.py 1
+```
+
+---
+
+## DATA CONSUMPTION
+
+The project uses two JSON files located in the `src/lib/database/migration/data/` directory:
+
+- `persons.json`: Contains the person records.
+- `contacts.json`: Contains the contact records.
+
+
+## Setup
+
+The package requirements are listed in the `requirements.txt` file.
+You can set up the project using one of the following methods:
+
+### Using Conda (Recommended)
+
+1. Run the `set-up.sh` script to create a new Conda environment and install the required packages:
+
+```sh
+
+conda create --name v4 python=3.9.6
+conda activate v4
+pip install -r requirements.txt
+
+```
+
+This script will create a new Conda environment named `v4` with Python 3.9.6 and install the packages listed in `requirements.txt`.
+
+2. Activate the Conda environment:
+
+```sh
+conda activate v4
+```
+
+
+After setting up the project, you can run it by executing `python main.py <person_id>`.
+
+**Example:**
+
+```bash
+python main.py 1
+```
+
+
+## Project Overview
 
 In this four-part exercise, you will write Python code to find connections between people based on given rules. Key points include:
 

@@ -15,6 +15,8 @@ __pycache__
 
 # DEV Databases
 src/lib/database/migration/data/db/*.db
+notebooks/*.db
+
 
 # Runtime data
 pids
