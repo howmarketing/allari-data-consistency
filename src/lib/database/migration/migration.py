@@ -199,46 +199,6 @@ class FindContactsByPersonId:
         return self.__query_result
     
 
-class FindExperiences:
-    
-    def get_experiences_by_person_id(self, person_id):
-        return Experience.select().where(Experience.person == person_id)
-    
-    # Get experiences where company name contains company_name and person_id is not equal person_id
-    def get_experiences_where_company_name_like(self, company_name, person_id=0):
-        return Experience.select().where(Experience.company.contains(company_name) & (Experience.person != person_id))
-
-    # This function retrieves experiences from the database where the company name contains the given string,
-    # the person_id does not match the given person_id, and the start and end dates fall within the given range.
-    # Additionally, it checks that the duration between the start and end dates is at least 90 days.
-    # Parameters:
-    # company_name (str): The company name to search for.
-    # person_id (int, optional): The person_id to exclude from the search. Defaults to 0.
-    # start_date (datetime.date, optional): The start date of the range. Defaults to None.
-    # end_date (datetime.date, optional): The end date of the range. Defaults to None.
-    # Returns:
-    # peewee.ModelSelect: A query object containing the matching experiences.
-    def get_experiences_where_company_name_like_not_person_id_dates_between_old(self, company_name, person_id=0, start_date=None, end_date=None):
-        if end_date is None:
-            end_date = datetime.date.today()
-        FindExperiencesWithPermanenceDays(company_name=company_name, min_permanence_days=90, person_id=person_id, start_date=start_date, end_date=end_date)
-
-
-    def get_experiences_where_company_name_like_not_person_id_dates_between(self, company_name, person_id=0, start_date=None, end_date=None):
-        return Experience.select().where(
-            (
-                Experience.company.contains(company_name) &
-                (Experience.person != person_id) &
-                (Experience.start_date <= start_date) &
-                (Experience.end_date >= start_date) &
-                (Experience.start_date <= end_date) &
-                (Experience.end_date >= end_date) &
-                (SQL('JULIANDAY(end_date) - JULIANDAY(start_date)') >= 90) &
-                (SQL('JULIANDAY({}) - JULIANDAY(start_date)'.format(end_date)) >= 90)
-            )
-        )
-
-
 class FindExperiencesWithPermanenceDays:
     
     __query = ""
