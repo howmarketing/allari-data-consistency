@@ -219,14 +219,7 @@ class FindExperiences:
     def get_experiences_where_company_name_like_not_person_id_dates_between_old(self, company_name, person_id=0, start_date=None, end_date=None):
         if end_date is None:
             end_date = datetime.date.today()
-        return Experience.select().where(
-            Experience.company.contains(company_name) &
-            (Experience.person != person_id) &
-            (Experience.start_date <= start_date) &
-            (Experience.end_date >= start_date) &
-            (Experience.start_date <= end_date) &
-            (Experience.end_date >= end_date)
-        )
+        FindExperiencesWithPermanenceDays(company_name=company_name, min_permanence_days=90, person_id=person_id, start_date=start_date, end_date=end_date)
 
 
     def get_experiences_where_company_name_like_not_person_id_dates_between(self, company_name, person_id=0, start_date=None, end_date=None):
@@ -248,12 +241,27 @@ class FindExperiencesWithPermanenceDays:
     
     __query = ""
     __query_result = []
-    person_id = 0
-    min_permanence_days = 0
     
-    def __init__(self, person_id = 0, min_permanence_days = 90):
-        self.person_id = person_id
-        self.min_permanence_days = min_permanence_days
+    company_name           =      ''
+    min_permanence_days    =      90
+    person_id              =      00
+    start_date             =      None
+    end_date               =      None
+    
+    def __init__(self, company_name='', start_date = None, end_date = None, min_permanence_days = 90, person_id = 0):
+        
+        self.company_name           =       company_name
+        self.min_permanence_days    =       min_permanence_days
+        self.person_id              =       person_id
+        self.start_date             =       datetime.date.today() - datetime.timedelta(days=min_permanence_days+1) if start_date is None else datetime.date.fromisoformat(str(start_date))
+        self.end_date               =       datetime.date.today() if end_date is None else datetime.date.fromisoformat(str(end_date))
+        self.start_date             =       str(self.start_date)
+        self.end_date               =       str(self.end_date)
+        self.__query                =       ""
+        self.__query_result         =       []
+    
+    def date_range_gte_min_perm(self, start_date, end_date):        
+        return (datetime.date.fromisoformat(str(end_date)) - datetime.date.fromisoformat(str(start_date))).days >= self.min_permanence_days
     
     def set_query(self):
         self.__query = ""
@@ -268,14 +276,36 @@ class FindExperiencesWithPermanenceDays:
         self.__query +=    "FROM  "
         self.__query +=        "experience as e "
         self.__query +=    "WHERE "
-        self.__query +=        "person_id <> ?"
+        self.__query +=        "e.company like ? "
         self.__query +=    "AND "
-        self.__query +=        "permanence_days >= ?"
+        self.__query +=        "permanence_days >= ? "
+        self.__query +=    "AND "
+        self.__query +=        "person_id <> ? "
+        self.__query +=    "AND "
+        self.__query +=        "start_date <= ? " # start_date lte (self.end_date - self.min_permanence_days)
         self.__query +=     "ORDER BY "
         self.__query +=         "e.id, e.person_id ASC"
     
+    def get_query_binds(self):
+        company = "%{}%".format(self.company_name)
+        permanence_days = int(self.min_permanence_days)
+        person_id = int(self.person_id)
+        start_date = datetime.date.fromisoformat(str(self.end_date)) - datetime.timedelta(days=permanence_days)
+        start_date = str(start_date)
+        return (company, permanence_days, person_id, start_date)
+    
     def execute_query(self):
-        cursor = db.execute_sql('{}'.format(self.__query), (self.person_id, self.min_permanence_days))
+        date_range_is_valid = self.date_range_gte_min_perm(self.start_date, self.end_date)
+        if not date_range_is_valid:
+            print('Invalid date range of {}, {} is not gte {} days'. format(self.start_date, self.end_date, self.min_permanence_days))
+            return []
+        binds = self.get_query_binds()
+        query = '{}'.format(self.__query)
+        print('query: ', query)
+        print('binds: ', binds)
+
+        cursor = db.execute_sql(query, binds)
+        
         for value in cursor:
             id, person_id, company, title, permanence_days, start_date, end_date = value
             data = {
@@ -294,6 +324,17 @@ class FindExperiencesWithPermanenceDays:
         self.set_query()
         self.execute_query()
         return self.__query_result
+    
+    def __repr__(self):
+        l = [7, 0, 10, 9, 11]
+        print('company_name'         ,  ': ', ' '*l[0]      ,    self.company_name)
+        print('min_permanence_days'  ,  ': ', ' '*l[1]      ,    self.min_permanence_days)
+        print('person_id'            ,  ': ', ' '*l[2]      ,    self.person_id)
+        print('start_date'           ,  ': ', ' '*l[3]      ,    self.start_date)
+        print('end_date'             ,  ': ', ' '*l[4]      ,    self.end_date)
+        print('query_results'        ,  ': ', ' '*l[4]      ,    self.__query_result)
+                
+        return list((self.company_name, self.min_permanence_days, self.person_id, self.start_date, self.end_date, self.__query_result))
    
 def print2(data):
     # Print the param __name__ and __value__
@@ -316,16 +357,25 @@ def migrate_database():
     person_contacts = FindContactsByPersonId(PERSON_ID).get_query_result(False)
     print2(person_contacts)
     
+    person = Person.get_by_id(PERSON_ID)
+    person_exp:list[Experience] = person.experiences;
     
-    # experiences_with_permanence_days = FindExperiencesWithPermanenceDays(person_id=PERSON_ID).get_query_result()
-    experiences_with_permanence_days = FindExperiencesWithPermanenceDays(1, 1).get_query_result()
-    print2(experiences_with_permanence_days)
-    
-    
-    
-    
-    
-    
+    for exp in person_exp:
+        print('-'*64)
+        print(exp.company)
+        print(exp.title)
+        print(exp.start_date)
+        print(exp.end_date)
+        print('Related by company: ')
+        find_experiences_with_permanence_days = FindExperiencesWithPermanenceDays(
+            company_name=exp.company,
+            start_date=exp.start_date,
+            end_date=exp.end_date,
+            person_id=exp.person.id
+        )
+        related_by_experience = find_experiences_with_permanence_days.get_query_result()
+        print(find_experiences_with_permanence_days.__repr__())
+        print2(related_by_experience)
     
     
     

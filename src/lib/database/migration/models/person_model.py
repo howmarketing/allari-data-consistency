@@ -1,7 +1,6 @@
-from dataclasses import dataclass
-from base_model import *
+from peewee import CharField, AutoField
+from src.lib.database.migration.models.base_model import BaseModel
 
-@dataclass
 class Person(BaseModel):
     id = AutoField()
     first_name = CharField()

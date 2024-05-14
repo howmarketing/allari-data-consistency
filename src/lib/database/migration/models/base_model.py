@@ -1,7 +1,6 @@
-from dataclasses import dataclass
-from src.lib.database.migration.models.db import *
+from peewee import Model
+from src.lib.database.migration.models.db import db
 
-@dataclass
 class BaseModel(Model):
     class Meta:
         database = db
