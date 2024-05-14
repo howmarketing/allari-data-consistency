@@ -12,7 +12,7 @@
 - [x] 5. Commit the project without the databases `src/lib/database/migration/data/db/allari-data-consistency_*_.db`;
 - [x] 6. Add on the `.gitignore` file databases matching `src/lib/database/migration/data/db/allari-data-consistency_*_.db`;
    - [x] 6.1. Push it.
-- [ ] 7. Test the application and the changes log on `git status` to make sure it is being successfully ignored.
+- [x] 7. Test the application and the changes log on `git status` to make sure it is being successfully ignored.
 
 ### DOING
 
