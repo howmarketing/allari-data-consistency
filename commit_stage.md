@@ -3,10 +3,9 @@
 
 ## TODO
 
-- [ ] 1. Clear the code-base;
+- [x] 1. Clear the code-base;
+- [x] 2. Add the usage on the readme;
 
 
 ### DOING
-
- - 1. Clear the code-base;
 
