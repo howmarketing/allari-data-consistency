@@ -318,7 +318,7 @@ def migrate_database():
     
     
     # experiences_with_permanence_days = FindExperiencesWithPermanenceDays(person_id=PERSON_ID).get_query_result()
-    experiences_with_permanence_days = FindExperiencesWithPermanenceDays(1, 2000).get_query_result()
+    experiences_with_permanence_days = FindExperiencesWithPermanenceDays(1, 1).get_query_result()
     print2(experiences_with_permanence_days)
     
     
