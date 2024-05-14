@@ -90,6 +90,9 @@ def main(person_records, person_id, contact_records):
 
     all_connections = sorted(set(connections_via_contacts + connections_via_experiences))
 
+    print('connections_via_contacts: ', connections_via_contacts)
+    print('connections_via_experiences: ', connections_via_experiences)
+
     print("Connected persons:")
     for conn_id in all_connections:
         person = next((p for p in person_records if p['id'] == conn_id), None)
@@ -99,6 +102,6 @@ def main(person_records, person_id, contact_records):
 if __name__ == "__main__":
     import sys
     person_id = int(sys.argv[1])
-    person_records = load_person_records('src/lib/migration/data/persons.json')
-    contact_records = load_contacts('src/lib/migration/data/contacts.json')
+    person_records = load_person_records('src/lib/database/migration/data/persons.json')
+    contact_records = load_contacts('src/lib/database/migration/data/contacts.json')
     main(person_records, person_id, contact_records)
