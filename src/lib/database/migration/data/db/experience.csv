@@ -1,0 +1,33 @@
+id,title,company,start_date,end_date,person_id
+1,Director of Marketing,OrangeCart,2017-01-01,NULL,1
+2,Marketing Manager,GreenTech,2015-06-01,2016-12-31,1
+3,Software Engineer,BlueBox,2018-06-01,NULL,2
+4,Junior Developer,RedHat,2016-01-01,2017-05-31,2
+5,Sales Manager,OrangeCart,2019-03-01,NULL,3
+6,Account Manager,YellowSubmarine,2017-07-01,2018-05-31,3
+7,Data Scientist,PurplePine,2020-01-01,NULL,4
+8,Research Assistant,GreenTech,2018-06-01,2019-12-31,4
+9,DevOps Engineer,BlueBox,2019-09-01,NULL,5
+10,Senior Developer,RedHat,2017-06-01,2019-08-31,5
+11,Marketing Coordinator,YellowSubmarine,2020-06-01,NULL,6
+12,Social Media Manager,PurplePine,2018-01-01,2020-05-31,6
+13,Environmental Consultant,GreenTech,2019-01-01,NULL,7
+14,Sustainability Specialist,BlueBox,2017-01-01,2018-12-31,7
+15,Data Scientist,RedHat,2019-01-01,NULL,8
+16,Research Assistant,YellowSubmarine,2017-01-01,2018-12-31,8
+17,Research Assistant,PurplePine,2017-01-01,2018-12-31,8
+18,UI/UX Designer,TechGlobal,2021-04-01,NULL,9
+19,Graphic Designer,DesignPro,2018-05-01,2021-03-31,9
+20,Logistics Coordinator,FastLogistics,2020-02-01,NULL,10
+21,Operations Analyst,ShippingSolutions,2017-08-01,2020-01-31,10
+22,Registered Nurse,HealthWell,2021-05-01,NULL,11
+23,Nurse Practitioner,MediCareClinic,2018-06-01,2021-04-30,11
+24,Software Developer,EduTechSolutions,2019-09-01,NULL,12
+25,Junior Web Developer,LearnOnline,2017-07-01,2019-08-31,12
+26,Content Writer,DigitalMedia,2021-06-01,NULL,13
+27,Copywriter,CreativeContent,2019-04-01,2021-05-31,13
+28,Mechanical Engineer,AutoInnovations,2020-03-01,NULL,14
+29,Design Engineer,DesignCars,2016-09-01,2020-02-29,14
+30,CEO,How Marketing,2017-01-01,NULL,15
+31,CEO,How Marketing,2017-01-01,NULL,16
+32,CEO,How Marketing,2017-01-01,NULL,17
