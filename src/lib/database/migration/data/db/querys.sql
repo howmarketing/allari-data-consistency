@@ -1,6 +1,19 @@
 
 
 
+SELECT 'PERSON:';
+SELECT * FROM person;
+
+SELECT 'EXPERIENCE:';
+SELECT * FROM experience;
+
+SELECT 'CONTACT:';
+SELECT * FROM contact;
+
+SELECT 'PHONE:';
+SELECT * FROM phone;
+
+
 SELECT 'CONTACTs: Retrieves information about phone numbers associated with a specific person (with ID 1) and their contacts. The query joins the `person`, `contact`, and `phone` tables, and also performs a left join with the `person` table to find any other persons whose phone numbers match the phone numbers in the `phone` table.' as TABLE_NAME;
 
 SELECT
