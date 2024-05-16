@@ -3,14 +3,14 @@
 ## TODO
 
 - [x] 1. Add the libraries to write unit tests with Python:
-    - [x] pytest
-    - [x] Mock: https://docs.python.org/3/library/unittest.mock.html
-- [ ] 2. Choose a test naming convention
-- [ ] 3. Create a directory for test files
-- [ ] 4. Write test cases
-- [ ] 5. Mock dependencies (if needed)
-- [ ] 6. Run the tests
-- [ ] 7. Analyze test results
+  - [x] pytest
+  - [x] Mock: https://docs.python.org/3/library/unittest.mock.html
+- [x] 2. Choose a test naming convention
+- [x] 3. Create a directory for test files
+- [x] 4. Write test cases
+- [x] 5. Mock dependencies (if needed)
+- [x] 6. Run the tests
+- [x] 7. Analyze test results
 - [ ] 8. Continuous Integration and Test Automation (optional)
 - [ ] 9. Refactor and improve
 
