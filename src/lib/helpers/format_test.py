@@ -1,4 +1,5 @@
-from lib.helpers import normalize_phone
+from src.lib.helpers.format import normalize_phone
+
 def test_normalize_phone():
     # Test case 1: Normal phone number with hyphens, parentheses, and spaces
     assert normalize_phone("(123) 456-7890") == "1234567890"
