@@ -1,5 +1,7 @@
 # PROJECT ALLARI DATA CONSISTENCY
 
+In this four-part exercise, you will write Python code to find connections between people based on given rules.
+
 ## USAGE
 
 **Example:**
@@ -42,13 +44,42 @@ You can set up the project using one of the following methods:
 
 1. Run the `set-up.sh` script to create a new Conda environment and install the required packages:
 
-```sh
+  ```bash
 
-conda create --name v4 python=3.9.6
-conda activate v4
-pip install -r requirements.txt
+  #!/bin/bash
 
-```
+
+  # Initialize conda in your current shell
+  eval "$(conda shell.bash hook)"
+
+  # 1. DIRECT CREATE:
+  # conda create --name v4 --file conda_requirements.txt
+
+  # 1. STAGES CREATE
+  # Create a new conda environment named 'v4' with Python 3.9.6
+  conda create --name v4 python=3.9.6
+
+  # Activate the 'v4' environment
+  conda activate v4
+
+  # 2. Configure conda channels for package installation
+  conda config --add channels conda-forge
+  conda install -n v4 peewee
+  conda install -n v4 pytest
+  conda install -n v4 unittest
+
+  # 2. Without configure the conda channels for package installation
+  # conda install -c conda-forge pytest
+  # conda install -c conda-forge pytest
+  # conda install -c conda-forge unittest
+
+
+
+  # 2. OPTIONAL: Install the requirements.txt
+  # pip install -r requirements.txt
+  # conda create --name v4 --file conda_requirements.txt
+
+  ```
 
 This script will create a new Conda environment named `v4` with Python 3.9.6 and install the packages listed in `requirements.txt`.
 
@@ -66,7 +97,6 @@ After setting up the project, you can run it by executing `python main.py <perso
 ```bash
 python main.py 1
 ```
-
 
 ## Project Overview
 
