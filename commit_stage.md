@@ -12,7 +12,7 @@
 - [x] 6. Run the tests
 - [x] 7. Analyze test results
 - [ ] 8. Continuous Integration and Test Automation (optional)
-- [ ] 9. Refactor and improve
+- [x] 9. Refactor and improve
 
 
 ## Introduction
