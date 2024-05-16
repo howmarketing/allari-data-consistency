@@ -2,6 +2,12 @@
 
 ## USAGE
 
+**Example:**
+
+```bash
+python main.py 1
+```
+
 To run the project, you only need to execute the following command:
 
 ```bash
@@ -11,10 +17,10 @@ python main.py <person_id>`
 > Replace `<person_id>` with the ID of the person whose relationships you want to find. For example, `python main.py 1` will find the relationships for the person with ID 1. You can change the ID to any other value, such as `2`, `3`, etc.
 >
 
-**Example:**
+### TEST
 
 ```bash
-python main.py 1
+pytest . -v
 ```
 
 ---
